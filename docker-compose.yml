@@ -1,0 +1,27 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: imdb_postgres
+    environment:
+      POSTGRES_USER: imdb_user
+      POSTGRES_PASSWORD: imdb_password
+      POSTGRES_DB: imdb_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_imdb_data:/var/lib/postgresql/data
+
+  dagster_imdb:
+    build: .
+    container_name: dagster_imdb_project
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_imdb_data:

@@ -1,0 +1,9 @@
+dagster
+dagster-webserver
+pandas
+requests
+python-dotenv
+pytest
+matplotlib
+sqlalchemy
+psycopg2-binary
